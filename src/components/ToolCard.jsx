@@ -1,4 +1,5 @@
-import Link from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
 
 const LICENSE_LABEL = {
   open_source: "Open source",
@@ -9,8 +10,16 @@ const LICENSE_LABEL = {
 // Card used in section 2 i.e Core Tooling
 export default function ToolCard({ tool, featured = false }) {
   return (
-    <Link>
-      <span />
+    <Link
+      to="/tools/$toolId"
+      params={{ toolId: tool.slug }}
+      className={`group relative flex flex-col justify-between gap-6 overflow-hidden border border-border bg-card/50 p-5 transition-colors hover:border-primary/60 hover:bg-card ${
+        featured ? "sm:p-6" : ""
+      }`}>
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-full -translate-y-full bg-linear-to-b from-primary/15 via-primary/5 to-transparent transition-transform duration-700 ease-out group-hover:translate-y-full"
+      />
 
       <div className="relative flex items-start justify-between gap-4">
         <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-primary">
