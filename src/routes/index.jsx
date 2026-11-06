@@ -5,10 +5,12 @@ import SiteFooter from "../components/SiteFooter";
 import { getCatalog } from "../lib/server-fns";
 import { ArrowRight } from "lucide-react";
 import CategoryCard from "../components/CategoryCard";
+import ToolCard from "../components/ToolCard";
 
 export const Route = createFileRoute("/")({
   loader: async () => await getCatalog(), // Gets data the page needs.
-  head: () => ({ // metadata
+  head: () => ({
+    // metadata
     meta: [
       { title: "Arsenal — The security tool index" },
       {
@@ -29,6 +31,7 @@ function SectionHeader({ index, label, title, action }) {
         <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-primary">
           {index} / {label}
         </p>
+
         <h2 className="mt-4 max-w-2xl font-heading text-[clamp(1.6rem,3.2vw,2.35rem)] font-medium leading-[1.1] tracking-[-0.02em] text-foreground">
           {title}
         </h2>
@@ -98,7 +101,6 @@ function HomePage() {
                 to="/tools"
                 className="group inline-flex items-center gap-2 self-start font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-primary">
                 Search the full catalogue
-
                 <ArrowRight
                   className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
                   aria-hidden="true"
@@ -110,6 +112,32 @@ function HomePage() {
           <div className="mt-8 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {disciplines.map((category) => (
               <CategoryCard key={category.slug} category={category} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="tools"
+        className="scroll-mt-20 border-t border-border py-16 sm:py-20">
+        <div className="mx-auto max-w-350 px-5 sm:px-8 lg:px-10">
+          <SectionHeader
+            index="02"
+            label="Core tooling"
+            title="The mainstays — the tools that anchor most engagements."
+            action={
+              <Link
+                to="/tools"
+                className="group inline-flex items-center gap-2 self-start border border-border px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground transition-colors hover:border-primary hover:text-primary">
+                <Search className="h-3.5 w-3.5" aria-hidden="true" />
+                View all {tools.length}
+              </Link>
+            }
+          />
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {coreTools.map((tool) => (
+              <ToolCard key={tool.id} tool={tool} featured />
             ))}
           </div>
         </div>
