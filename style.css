@@ -1,1 +1,137 @@
 @import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 240 5% 4%;
+    --foreground: 0 0% 100%;
+    --card: 240 6% 9%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 6% 8%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 71 100% 50%;
+    --primary-foreground: 240 5% 4%;
+    --secondary: 240 5% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 5% 12%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 5% 14%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 5% 17%;
+    --input: 240 5% 17%;
+    --ring: 71 100% 50%;
+    --radius: 0.25rem;
+    --chart-1: 71 100% 50%;
+    --chart-2: 199 89% 58%;
+    --chart-3: 173 58% 45%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --font-heading: "Arimo", Arial, Helvetica, system-ui, sans-serif;
+    --font-body: "Inter", system-ui, -apple-system, sans-serif;
+    --font-display: "Arimo", Arial, Helvetica, sans-serif;
+    --font-mono:
+      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sidebar-background: 240 5% 6%;
+    --sidebar-foreground: 240 5% 90%;
+    --sidebar-primary: 71 100% 50%;
+    --sidebar-primary-foreground: 240 5% 4%;
+    --sidebar-accent: 240 5% 12%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 240 5% 17%;
+    --sidebar-ring: 71 100% 50%;
+  }
+
+  .dark {
+    --background: 240 5% 4%;
+    --foreground: 0 0% 100%;
+    --card: 240 6% 9%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 6% 8%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 71 100% 50%;
+    --primary-foreground: 240 5% 4%;
+    --secondary: 240 5% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 5% 12%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 5% 14%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 5% 17%;
+    --input: 240 5% 17%;
+    --ring: 71 100% 50%;
+    --sidebar-background: 240 5% 6%;
+    --sidebar-foreground: 240 5% 90%;
+    --sidebar-primary: 71 100% 50%;
+    --sidebar-primary-foreground: 240 5% 4%;
+    --sidebar-accent: 240 5% 12%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 240 5% 17%;
+    --sidebar-ring: 71 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+    outline-color: hsl(var(--ring) / 0.5);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+  }
+
+  ::selection {
+    background: hsl(71 100% 50% / 0.9);
+    color: hsl(240 5% 4%);
+  }
+}
+
+@layer utilities {
+  /* Soft sulfur-lime bloom pooled behind the hero copy. */
+  .hero-glow {
+    background-image:
+      radial-gradient(
+        58% 78% at 20% 26%,
+        hsl(var(--primary) / 0.16) 0%,
+        hsl(var(--primary) / 0.05) 40%,
+        transparent 72%
+      ),
+      radial-gradient(
+        46% 62% at 88% 96%,
+        hsl(199 89% 58% / 0.07) 0%,
+        transparent 70%
+      );
+  }
+
+  .tactical-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.45) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .edge-fade {
+    mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black 45%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black 45%,
+      transparent 100%
+    );
+  }
+}
