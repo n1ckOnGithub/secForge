@@ -1,11 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import SiteHeader from "../components/SiteHeader";
 import HeroSection from "../components/HeroSection";
-import SiteFooter from "../components/SiteFooter";
 import { getCatalog } from "../lib/server-fns";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import CategoryCard from "../components/CategoryCard";
 import ToolCard from "../components/ToolCard";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   loader: async () => await getCatalog(), // Gets data the page needs.
