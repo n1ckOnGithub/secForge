@@ -1,10 +1,32 @@
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import appCss from "../../style.css?url";
+import SiteHeader from "../components/SiteHeader";
+import SiteFooter from "../components/SiteFooter";
+import {
+  createRootRoute,
+  Outlet,
+  HeadContent,
+  Scripts,
+} from "@tanstack/react-router";
 
 const RootLayout = () => (
   <>
-    <Outlet />
+    <html lang="en">
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        <SiteHeader />
+        <Outlet />
+        <SiteFooter />
+        <Scripts />
+      </body>
+    </html>
   </>
 );
 
-export const Route = createRootRoute({ component: RootLayout });
+export const Route = createRootRoute({
+  head: () => ({
+    links: [{ rel: "stylesheet", href: appCss }],
+  }),
+  component: RootLayout,
+});
