@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { supabase } from "./server.supabase";
 
 function asArray(result) {
   if (Array.isArray(result)) return result;
@@ -8,11 +9,10 @@ function asArray(result) {
 
 // Function that runs in the server rather than in the browser.
 export const getCatalog = createServerFn({ method: "GET" }).handler(
-  async ({ context }) => {
-    const base44 = context.getBase44();
+  async () => {
     const [toolsResult, categoriesResult] = await Promise.all([
-      base44.entities.Tool.list({ sort: "name", limit: 400 }),
-      base44.entities.Category.list({ sort: "index", limit: 50 }),
+      supabase.from("Tools").select("*").order("name"),
+      supabase.from("Category").select("*").order("index"),
     ]);
     return {
       tools: asArray(toolsResult),
@@ -24,19 +24,17 @@ export const getCatalog = createServerFn({ method: "GET" }).handler(
 // Fetches a tool by its slug and returns it along with up to 4 other tools
 export const getTool = createServerFn({ method: "GET" })
   .validator(z.object({ slug: z.string().min(1).max(120) })) // Validates input passed into the function.
-  .handler(async ({ data, context }) => {
-    const base44 = context.getBase44();
+  .handler(async ({ data }) => {
     const matches = asArray(
-      await base44.entities.Tool.filter({ slug: data.slug }, { limit: 1 }),
+      await supabase.from("Tools").filter({ slug: data.slug }, { limit: 1 }),
     );
     const tool = matches[0];
     if (!tool) return null;
 
     const related = asArray(
-      await base44.entities.Tool.filter(
-        { category: tool.category },
-        { sort: "name", limit: 8 },
-      ),
+      await supabase
+        .from("Tools")
+        .filter({ category: tool.category }, { sort: "name", limit: 8 }),
     );
 
     return {
@@ -48,14 +46,12 @@ export const getTool = createServerFn({ method: "GET" })
 export const getCategoryGuide = createServerFn({ method: "GET" })
   .validator(z.object({ slug: z.string().min(1).max(120) }))
   .handler(async ({ data, context }) => {
-    const base44 = context.getBase44();
     const [matches, tools, categories] = await Promise.all([
-      base44.entities.Category.filter({ slug: data.slug }),
-      base44.entities.Tool.filter(
-        { category: data.slug },
-        { sort: "name", limit: 100 },
-      ),
-      base44.entities.Category.list({ sort: "index", limit: 50 }),
+      supabase.from("Category").filter({ slug: data.slug }),
+      supabase
+        .from("Tool")
+        .filter({ category: data.slug }, { sort: "name", limit: 100 }),
+      supabase.from("Category").list({ sort: "index", limit: 50 }),
     ]);
 
     const category = asArray(matches)[0];
