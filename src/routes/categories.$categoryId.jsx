@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { getCategoryGuide } from "../lib/server-fns";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, Check, ArrowUpRight, ArrowRight } from "lucide-react";
 import CategoryIcon from "../components/CategoryIcon";
+import ToolCard from "../components/ToolCard";
 
 export const Route = createFileRoute("/categories/$categoryId")({
   loader: ({ params }) =>
@@ -172,7 +173,7 @@ function CategoryPage() {
               <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary">
                 Where to start
               </h2>
-              
+
               <ol className="mt-6 space-y-6">
                 {(category.getting_started || []).map((step, index) => (
                   <li key={step} className="flex gap-5">
@@ -187,6 +188,109 @@ function CategoryPage() {
               </ol>
             </section>
           </div>
+        </div>
+
+        {tools.length ? (
+          <section
+            id="tools"
+            className="mt-16 scroll-mt-24 border-t border-border pt-10">
+            <div className="flex items-baseline justify-between gap-4">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary">
+                Key tools
+              </h2>
+
+              <Link
+                to="/tools"
+                className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-primary">
+                Whole catalogue
+              </Link>
+            </div>
+
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {tools.map((tool) => (
+                <ToolCard key={tool.id} tool={tool} />
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        {category.further_reading?.length ? (
+          <section
+            id="reading"
+            className="mt-16 scroll-mt-24 border-t border-border pt-10">
+            <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary">
+              Further reading
+            </h2>
+
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+              {category.further_reading.map((item) => (
+                <li key={item.url}>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="group flex items-center justify-between gap-4 border border-border px-5 py-4 transition-colors hover:border-primary/60 hover:bg-card">
+                    <span className="text-sm text-muted-foreground transition-colors group-hover:text-foreground">
+                      {item.label}
+                    </span>
+
+                    <ArrowUpRight
+                      className="h-4 w-4 flex-none text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        <div className="mt-16 grid gap-4 border-t border-border pt-10 sm:grid-cols-2">
+          {previous ? (
+            <Link
+              to="/categories/$categoryId"
+              params={{ categoryId: previous.slug }}
+              className="group flex items-center gap-4 border border-border px-5 py-5 transition-colors hover:border-primary/60 hover:bg-card">
+              <ArrowLeft
+                className="h-4 w-4 flex-none text-muted-foreground transition-transform group-hover:-translate-x-1"
+                aria-hidden="true"
+              />
+
+              <span>
+                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground">
+                  Previous discipline
+                </span>
+
+                <span className="mt-1 block text-sm text-foreground">
+                  {previous.name}
+                </span>
+              </span>
+            </Link>
+          ) : (
+            <span />
+          )}
+
+          {next ? (
+            <Link
+              to="/categories/$categoryId"
+              params={{ categoryId: next.slug }}
+              className="group flex items-center justify-end gap-4 border border-border px-5 py-5 text-right transition-colors hover:border-primary/60 hover:bg-card">
+              <span>
+                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground">
+                  Next discipline
+                </span>
+
+                <span className="mt-1 block text-sm text-foreground">
+                  {next.name}
+                </span>
+              </span>
+
+              <ArrowRight
+                className="h-4 w-4 flex-none text-muted-foreground transition-transform group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </Link>
+          ) : null}
         </div>
       </div>
     </div>
