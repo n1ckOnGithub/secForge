@@ -3,6 +3,7 @@ import { getTool } from "../lib/server-fns";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import CategoryIcon from "../components/CategoryIcon";
 import githubLogo from "../assets/GithubWLogo.svg";
+import ToolCard from "../components/ToolCard";
 
 const LICENSE_LABEL = {
   open_source: "Open source",
@@ -188,8 +189,39 @@ function ToolPage() {
                 </a>
               ) : null}
             </div>
+
+            <Link
+              to="/categories/$categoryId"
+              params={{ categoryId: tool.category }}
+              className="mt-4 flex items-center justify-between gap-3 border border-border px-5 py-4 text-sm text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground">
+              Read the {tool.category_label.toLowerCase()} guide
+              <ArrowUpRight className="h-4 w-4 flex-none" aria-hidden="true" />
+            </Link>
           </aside>
         </div>
+
+        {related.length ? (
+          <div className="mt-16 border-t border-border pt-10">
+            <div className="flex items-baseline justify-between gap-4">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary">
+                Also in {tool.category_label.toLowerCase()}
+              </h2>
+
+              <Link
+                to="/categories/$categoryId"
+                params={{ categoryId: tool.category }}
+                className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-primary">
+                All of them
+              </Link>
+            </div>
+
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {related.map((item) => (
+                <ToolCard key={item.id} tool={item} />
+              ))}
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );
