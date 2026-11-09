@@ -1,6 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { getTool } from "../lib/server-fns";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import CategoryIcon from "../components/CategoryIcon";
+import githubLogo from "../assets/GithubWLogo.svg";
+
+const LICENSE_LABEL = {
+  open_source: "Open source",
+  freemium: "Freemium",
+  commercial: "Commercial",
+};
+
+const SKILL_LABEL = {
+  beginner: "Beginner",
+  intermediate: "Intermediate",
+  advanced: "Advanced",
+};
 
 export const Route = createFileRoute("/tools/$toolId")({
   loader: ({ params }) => getTool({ data: { slug: params.toolId } }),
@@ -108,7 +122,7 @@ function ToolPage() {
                 <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary">
                   Reach for it when
                 </h2>
-                
+
                 <ul className="mt-5 space-y-4">
                   {tool.use_when.map((item) => (
                     <li
@@ -123,6 +137,58 @@ function ToolPage() {
               </div>
             ) : null}
           </div>
+
+          <aside className="lg:sticky lg:top-24 lg:self-start">
+            <div className="border border-border bg-card/50 p-5">
+              <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.18em] text-primary">
+                <CategoryIcon icon={tool.category} className="h-3.5 w-3.5" />
+                {tool.category_label}
+              </div>
+
+              <div className="mt-4">
+                <MetaRow
+                  label="Licence"
+                  value={LICENSE_LABEL[tool.license] || tool.license}
+                />
+                <MetaRow
+                  label="Level"
+                  value={SKILL_LABEL[tool.skill_level] || tool.skill_level}
+                />
+                <MetaRow
+                  label="Platforms"
+                  value={(tool.platforms || []).join(", ")}
+                />
+                <MetaRow label="Maintained by" value={tool.maintainer} />
+              </div>
+
+              <a
+                href={tool.website_url}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group mt-5 flex w-full items-center justify-center gap-2 bg-primary px-5 py-3.5 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-foreground transition-opacity hover:opacity-90">
+                Visit the project
+                <ArrowUpRight
+                  className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
+              </a>
+
+              {tool.github_url ? (
+                <a
+                  href={tool.github_url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="mt-3 flex w-full items-center justify-center gap-2 border border-border px-5 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground transition-colors hover:border-foreground/40">
+                  <img
+                    className="h-4 w-4"
+                    src={githubLogo}
+                    aria-hidden="true"
+                  />
+                  Source repository
+                </a>
+              ) : null}
+            </div>
+          </aside>
         </div>
       </div>
     </div>
