@@ -150,6 +150,43 @@ function CategoryPage() {
               </ul>
             </nav>
           </aside>
+
+          <div className="min-w-0">
+            <section id="overview" className="scroll-mt-24">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary">
+                Overview
+              </h2>
+
+              <div className="mt-5 space-y-5">
+                {paragraphs.map((paragraph, index) => (
+                  <p
+                    key={index}
+                    className="max-w-2xl text-[15px] leading-[1.75] text-muted-foreground sm:text-base">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </section>
+
+            <section id="start" className="mt-14 scroll-mt-24">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary">
+                Where to start
+              </h2>
+              
+              <ol className="mt-6 space-y-6">
+                {(category.getting_started || []).map((step, index) => (
+                  <li key={step} className="flex gap-5">
+                    <span className="mt-0.5 flex h-7 w-7 flex-none items-center justify-center border border-border font-mono text-[10px] text-primary">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className="max-w-2xl text-[15px] leading-[1.75] text-muted-foreground">
+                      {step}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          </div>
         </div>
       </div>
     </div>
