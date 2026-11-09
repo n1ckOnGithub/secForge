@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { getCategoryGuide } from "../lib/server-fns";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 import CategoryIcon from "../components/CategoryIcon";
 
 export const Route = createFileRoute("/categories/$categoryId")({
@@ -106,6 +106,50 @@ function CategoryPage() {
           <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
             {tools.length} tools indexed in this discipline
           </p>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-350 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="grid gap-12 lg:grid-cols-[260px_1fr] lg:gap-16">
+          <aside className="lg:sticky lg:top-24 lg:self-start">
+            <div className="border border-border bg-card/50 p-5">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary">
+                At a glance
+              </h2>
+
+              <ul className="mt-4 space-y-3">
+                {(category.core_skills || []).map((skill) => (
+                  <li
+                    key={skill}
+                    className="flex gap-2.5 text-sm leading-snug text-muted-foreground">
+                    <Check
+                      className="mt-0.5 h-3.5 w-3.5 flex-none text-primary"
+                      aria-hidden="true"
+                    />
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <nav className="mt-6 hidden lg:block" aria-label="On this page">
+              <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+                On this page
+              </p>
+
+              <ul className="mt-3 space-y-2">
+                {JUMP_LINKS.map((link) => (
+                  <li key={link.id}>
+                    <a
+                      href={`#${link.id}`}
+                      className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-primary">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </aside>
         </div>
       </div>
     </div>
