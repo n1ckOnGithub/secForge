@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getCatalog } from "../lib/server-fns";
 import { useState, useMemo } from "react";
+import { Search, X } from "lucide-react";
 
 export const Route = createFileRoute("/tools/")({
   loader: async () => await getCatalog(),
@@ -74,12 +75,70 @@ function CatalogPage() {
           <h1 className="mt-4 max-w-3xl font-heading text-[clamp(2rem,5vw,3.6rem)] font-medium leading-none tracking-[-0.03em] text-foreground">
             Every tool in the index.
           </h1>
-          
+
           <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
             {tools.length} tools across {categories.length} disciplines. Search
             by name, vendor or keyword, or narrow the list by what the tool is
             for.
           </p>
+
+          <div className="mt-8 flex max-w-xl items-center gap-3 border border-border bg-background px-4 py-3 focus-within:border-primary">
+            <Search
+              className="h-4 w-4 flex-none text-muted-foreground"
+              aria-hidden="true"
+            />
+
+            <input
+              type="text"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search tools, vendors, tags…"
+              aria-label="Search the catalogue"
+              className="w-full bg-transparent font-mono text-xs uppercase tracking-widest text-foreground outline-none placeholder:text-muted-foreground"
+            />
+
+            {query ? (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                aria-label="Clear search"
+                className="flex-none text-muted-foreground transition-colors hover:text-primary">
+                <X className="h-4 w-4" aria-hidden="true" />
+              </button>
+            ) : null}
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-350 px-5 py-12 sm:px-8 lg:px-10">
+        <div className="grid gap-10 lg:grid-cols-[240px_1fr]">
+          <aside className="lg:sticky lg:top-24 lg:self-start">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              Discipline
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-2 lg:flex-col lg:flex-nowrap">
+              {filters.map((filter) => {
+                const isActive = active === filter.slug;
+                return (
+                  <button
+                    key={filter.slug}
+                    type="button"
+                    onClick={() => setActive(filter.slug)}
+                    className={`flex items-center justify-between gap-3 border px-3 py-2 text-left font-mono text-[10px] uppercase tracking-[0.14em] transition-colors ${
+                      isActive
+                        ? "border-primary bg-primary/10 text-primary"
+                        : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+                    }`}>
+
+                    <span>{filter.name}</span>
+                    
+                    <span className="flex-none opacity-60">{filter.count}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </aside>
         </div>
       </div>
     </div>
