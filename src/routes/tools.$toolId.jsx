@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { getTool } from "../lib/server-fns";
 import { ArrowLeft } from "lucide-react";
 
-export const Route = createFileRoute("/tools/toolId")({
+export const Route = createFileRoute("/tools/$toolId")({
   loader: ({ params }) => getTool({ data: { slug: params.toolId } }),
   head: ({ loaderData }) => ({
     meta: [
