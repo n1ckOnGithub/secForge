@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getCatalog } from "../lib/server-fns";
 import { useState, useMemo } from "react";
 import { Search, X } from "lucide-react";
+import ToolCard from "../components/ToolCard";
 
 export const Route = createFileRoute("/tools/")({
   loader: async () => await getCatalog(),
@@ -130,15 +131,60 @@ function CatalogPage() {
                         ? "border-primary bg-primary/10 text-primary"
                         : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
                     }`}>
-
                     <span>{filter.name}</span>
-                    
+
                     <span className="flex-none opacity-60">{filter.count}</span>
                   </button>
                 );
               })}
             </div>
           </aside>
+
+          <div>
+            <div className="flex items-baseline justify-between gap-4 border-b border-border pb-4">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                {filtered.length} {filtered.length === 1 ? "result" : "results"}
+              </p>
+
+              {active !== "all" ? (
+                <button
+                  type="button"
+                  onClick={() => setActive("all")}
+                  className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary hover:underline">
+                  Reset filter
+                </button>
+              ) : null}
+            </div>
+
+            {filtered.length ? (
+              <div className="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                {filtered.map((tool) => (
+                  <ToolCard key={tool.id} tool={tool} />
+                ))}
+              </div>
+            ) : (
+              <div className="mt-10 border border-border bg-card/40 px-6 py-14 text-center">
+                <p className="font-heading text-lg text-foreground">
+                  Nothing matches that.
+                </p>
+
+                <p className="mx-auto mt-2 max-w-sm text-sm text-muted-foreground">
+                  Try a shorter term, or clear the discipline filter to search
+                  the whole index.
+                </p>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setQuery("");
+                    setActive("all");
+                  }}
+                  className="mt-6 border border-border px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground transition-colors hover:border-primary hover:text-primary">
+                  Reset search
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
