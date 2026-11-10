@@ -1,8 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-
-const HERO_IMAGE =
-  "https://media.base44.com/images/public/6aec3f2fa7b9d20894d39740/a19e6ee1c_generated_image.png";
+import HeroImage from "../assets/hero.png";
 
 export default function HeroSection({ toolCount, disciplineCount }) {
   return (
@@ -11,7 +9,7 @@ export default function HeroSection({ toolCount, disciplineCount }) {
         className="hero-glow relative overflow-hidden border-b border-border"
         aria-label="Arsenal Index">
         <div className="mx-auto grid max-w-350 gap-10 px-5 pb-14 pt-14 sm:px-8 lg:grid-cols-[1fr_44%] lg:items-stretch lg:gap-14 lg:px-10 lg:pb-16 lg:pt-20">
-          <div className="flex min-w-0 flex-col justify-between gap-12">
+          <div className="flex min-w-0 flex-col gap-12">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-primary">
                 {disciplineCount} disciplines · {toolCount} tools indexed
@@ -27,8 +25,8 @@ export default function HeroSection({ toolCount, disciplineCount }) {
               <p className="text-base leading-relaxed text-muted-foreground sm:text-[17px]">
                 Every tool practitioners actually reach for reconnaissance,
                 exploitation, forensics, detection, all sorted by the job they
-                do. Each entry says what it is, where to get it, and which guide
-                tells you when to open it.
+                do. Each entry says what it is and where to get it. Don't just
+                run the tools. Understand them.
               </p>
 
               <Link
@@ -44,7 +42,13 @@ export default function HeroSection({ toolCount, disciplineCount }) {
           </div>
 
           <figure className="relative min-h-65 overflow-hidden rounded-lg border border-border bg-card sm:min-h-85 lg:min-h-0">
-            {/* Hero image */}
+            <img
+              src={HeroImage}
+              alt="Macro render of a crystalline structure being scanned by a lattice of light."
+              fittingType="fill"
+              className="h-full w-full"
+            />
+
             <figcaption className="absolute bottom-3 left-3 border border-border bg-background/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground backdrop-blur-sm">
               Fig. 01 — attack surface
             </figcaption>
