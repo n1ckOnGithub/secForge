@@ -15,6 +15,7 @@ export const Route = createFileRoute("/tools/")({
           "Search every cybersecurity tool in the index and filter by discipline, licence and platform.",
       },
     ],
+    links: [{ rel: "icon", href: "/terminal.svg" }],
   }),
   component: CatalogPage,
 });

@@ -17,6 +17,7 @@ export const Route = createFileRoute("/categories/$categoryId")({
           "A practical guide to one discipline in the Cybersec world.",
       },
     ],
+    links: [{ rel: "icon", href: "/terminal.svg" }],
   }),
   component: CategoryPage,
 });

@@ -24,11 +24,10 @@ export const Route = createFileRoute("/tools/$toolId")({
       { title: `${loaderData?.tool?.name ?? "Tool"} — SecForge` },
       {
         name: "description",
-        content:
-          loaderData?.tool?.summary ??
-          "A tool from in Cybersecurity",
+        content: loaderData?.tool?.summary ?? "A tool from in Cybersecurity",
       },
     ],
+    links: [{ rel: "icon", href: "/terminal.svg" }],
   }),
   component: ToolPage,
 });

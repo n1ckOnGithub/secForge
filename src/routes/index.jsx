@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import HeroSection from "../components/HeroSection";
 import { getCatalog } from "../lib/server-fns";
-import { ArrowRight, Search, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Search, ArrowUpRight, Terminal } from "lucide-react";
 import CategoryCard from "../components/CategoryCard";
 import ToolCard from "../components/ToolCard";
 import { Link } from "@tanstack/react-router";
@@ -21,6 +21,7 @@ export const Route = createFileRoute("/")({
           "A curated catalogue of cybersecurity tools grouped by discipline, with a practical guide for every function area.",
       },
     ],
+    links: [{ rel: "icon", href: "/terminal.svg" }],
   }),
   component: HomePage,
 });
