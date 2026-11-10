@@ -64,7 +64,6 @@ function HomePage() {
     { value: String(categories.length), label: "Function areas" },
     { value: String(tools.length), label: "Tools indexed" },
     { value: "1", label: "Entry per tool, checked by hand" },
-    { value: "0", label: "Paywalls or sign-ups" },
   ];
 
   return (
@@ -75,7 +74,7 @@ function HomePage() {
       />
 
       <section className="border-b border-border bg-card/20">
-        <div className="mx-auto grid max-w-350 grid-cols-2 gap-px sm:grid-cols-4">
+        <div className="mx-auto grid max-w-350 grid-cols-2 gap-px sm:grid-cols-3">
           {stats.map((stat) => (
             <div
               key={stat.label}
@@ -97,7 +96,7 @@ function HomePage() {
           <SectionHeader
             index="01"
             label="Function areas"
-            title="Twelve ways to break in — and to keep them out."
+            title="Twelve ways to break in. Twelve ways to defend."
             action={
               <Link
                 to="/tools"
@@ -126,7 +125,7 @@ function HomePage() {
           <SectionHeader
             index="02"
             label="Core tooling"
-            title="The mainstays — the tools that anchor most engagements."
+            title="Tools that form the backbone of most engagements."
             action={
               <Link
                 to="/tools"
@@ -168,7 +167,7 @@ function HomePage() {
 
                 <p className="mt-5 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
                   Each guide explains what the discipline is for, the order to
-                  learn it in, and the handful of tools worth installing first —
+                  learn it in, and the handful of tools worth installing first,
                   so you are never staring at a list of names with no idea where
                   to begin.
                 </p>
