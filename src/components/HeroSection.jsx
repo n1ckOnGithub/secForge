@@ -25,9 +25,9 @@ export default function HeroSection({ toolCount, disciplineCount }) {
 
             <div className="max-w-xl">
               <p className="text-base leading-relaxed text-muted-foreground sm:text-[17px]">
-                Every tool practitioners actually reach for — reconnaissance,
-                exploitation, forensics, detection — sorted by the job it does.
-                Each entry says what it is, where to get it, and which guide
+                Every tool practitioners actually reach for reconnaissance,
+                exploitation, forensics, detection, all sorted by the job they
+                do. Each entry says what it is, where to get it, and which guide
                 tells you when to open it.
               </p>
 
@@ -40,15 +40,11 @@ export default function HeroSection({ toolCount, disciplineCount }) {
                   aria-hidden="true"
                 />
               </Link>
-
-              <p className="mt-6 font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-muted-foreground">
-                No accounts. No paywalls. Links go straight to the source.
-              </p>
             </div>
           </div>
 
           <figure className="relative min-h-65 overflow-hidden rounded-lg border border-border bg-card sm:min-h-85 lg:min-h-0">
-            { /* Hero image */}
+            {/* Hero image */}
             <figcaption className="absolute bottom-3 left-3 border border-border bg-background/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground backdrop-blur-sm">
               Fig. 01 — attack surface
             </figcaption>
