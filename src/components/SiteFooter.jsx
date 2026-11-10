@@ -32,7 +32,7 @@ export default function SiteFooter() {
                   <Terminal className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <span className="font-heading text-[15px] font-bold tracking-[0.22em] text-foreground">
-                  ARSENAL
+                  SECFORGE
                 </span>
               </Link>
 
@@ -92,7 +92,7 @@ export default function SiteFooter() {
 
           <div className="mt-14 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              © 2026 Arsenal — a catalogue, not an endorsement
+              © 2026 SecForge — a catalogue, not an endorsement
             </p>
             
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">

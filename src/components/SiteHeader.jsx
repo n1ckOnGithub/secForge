@@ -13,7 +13,7 @@ export default function SiteHeader() {
 
             <span className="leading-none">
               <span className="block font-heading text-[15px] font-bold tracking-[0.22em] text-foreground">
-                ARSENAL
+                SECFORGE
               </span>
 
               <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
