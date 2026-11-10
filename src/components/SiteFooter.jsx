@@ -38,12 +38,12 @@ export default function SiteFooter() {
 
               <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
                 A hand-checked index of the tools security teams actually run,
-                sorted by the job they do — with a guide for every discipline so
+                sorted by the job they do, with a guide for every discipline so
                 you know where to start.
               </p>
 
               <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                Independent · Unaffiliated · No paywalls
+                Independent · Unaffiliated
               </p>
             </div>
 
