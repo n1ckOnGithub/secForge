@@ -1,16 +1,40 @@
-# React + Vite
+# SecForge
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+**Forge your security knowledge.**
 
-Currently, two official plugins are available:
+SecForge is a curated index of cybersecurity tools and resources, organized by security discipline. It provides a central place to discover security tools, understand their purpose, and explore the different areas of cybersecurity.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Overview
 
-## React Compiler
+Cybersecurity involves a wide range of disciplines, each with its own tools, techniques, and methodologies. Finding the right tools and understanding where they fit can be challenging.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+SecForge aims to make that process easier by organizing cybersecurity tools into dedicated categories and providing guides that introduce the different disciplines.
 
-## Expanding the Oxlint configuration
+Whether you're exploring reconnaissance, network analysis, web application security, digital forensics, or threat intelligence, SecForge helps you navigate the cybersecurity landscape.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Features
+
+- **Tool directory** – Browse a curated collection of cybersecurity tools.
+- **Discipline-based categories** – Explore tools organized by cybersecurity domain.
+- **Search and filtering** – Find tools by name, description, category, tags, and supported platforms.
+- **Category guides** – Learn about individual security disciplines, their core skills, and recommended starting points.
+- **Tool information** – Explore tool descriptions, maintainers, tags, and supported platforms.
+
+## Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| React | User interface |
+| Supabase | Database and data management |
+| Tailwind CSS | Styling |
+
+
+## Contributing
+
+Contributions, suggestions, and feedback are welcome.
+
+If you have ideas for improving the catalogue, adding useful resources, or expanding the category guides, feel free to open an issue or submit a pull request.
+
+## License
+
+A license has not yet been specified.
