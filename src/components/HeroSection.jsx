@@ -50,7 +50,7 @@ export default function HeroSection({ toolCount, disciplineCount }) {
             />
 
             <figcaption className="absolute bottom-3 left-3 border border-border bg-background/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground backdrop-blur-sm">
-              Fig. 01 — attack surface
+              Fig. 01 — Know the Threat. Forge the Defense.
             </figcaption>
           </figure>
         </div>
