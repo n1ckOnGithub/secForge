@@ -21,12 +21,12 @@ export const Route = createFileRoute("/tools/$toolId")({
   loader: ({ params }) => getTool({ data: { slug: params.toolId } }),
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.tool?.name ?? "Tool"} — Arsenal` },
+      { title: `${loaderData?.tool?.name ?? "Tool"} — SecForge` },
       {
         name: "description",
         content:
           loaderData?.tool?.summary ??
-          "A tool from the Arsenal cybersecurity index.",
+          "A tool from in Cybersecurity",
       },
     ],
   }),

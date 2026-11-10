@@ -9,12 +9,12 @@ export const Route = createFileRoute("/categories/$categoryId")({
     getCategoryGuide({ data: { slug: params.categoryId } }),
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.category?.name ?? "Guide"} — Arsenal` },
+      { title: `${loaderData?.category?.name ?? "Guide"} — SecForge` },
       {
         name: "description",
         content:
           loaderData?.category?.summary ??
-          "A practical guide to one discipline in the Arsenal security index.",
+          "A practical guide to one discipline in the Cybersec world.",
       },
     ],
   }),

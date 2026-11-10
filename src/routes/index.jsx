@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     // metadata
     meta: [
-      { title: "Arsenal — The security tool index" },
+      { title: "SecForge — The security tool index" },
       {
         name: "description",
         content:
@@ -173,7 +173,7 @@ function HomePage() {
                   to begin.
                 </p>
               </div>
-              
+
               <div className="flex flex-wrap gap-3 lg:justify-end">
                 <Link
                   to="/categories/$categoryId"

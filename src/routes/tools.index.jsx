@@ -8,7 +8,7 @@ export const Route = createFileRoute("/tools/")({
   loader: async () => await getCatalog(),
   head: () => ({
     meta: [
-      { title: "Catalogue — Arsenal" },
+      { title: "Catalogue — SecForge" },
       {
         name: "description",
         content:
