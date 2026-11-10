@@ -7,7 +7,7 @@ export default function HeroSection({ toolCount, disciplineCount }) {
     <>
       <section
         className="hero-glow relative overflow-hidden border-b border-border"
-        aria-label="Arsenal Index">
+        aria-label="secForge Index">
         <div className="mx-auto grid max-w-350 gap-10 px-5 pb-14 pt-14 sm:px-8 lg:grid-cols-[1fr_44%] lg:items-stretch lg:gap-14 lg:px-10 lg:pb-16 lg:pt-20">
           <div className="flex min-w-0 flex-col gap-12">
             <div>
