@@ -1,10 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import HeroSection from "../components/HeroSection";
 import { getCatalog } from "../lib/server-fns";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, Search, ArrowUpRight } from "lucide-react";
 import CategoryCard from "../components/CategoryCard";
 import ToolCard from "../components/ToolCard";
 import { Link } from "@tanstack/react-router";
+
+const BAND_IMAGE =
+  "https://media.base44.com/images/public/6aec3f2fa7b9d20894d39740/588e73559_generated_image.png";
 
 export const Route = createFileRoute("/")({
   loader: async () => await getCatalog(), // Gets data the page needs.
@@ -138,6 +141,62 @@ function HomePage() {
             {coreTools.map((tool) => (
               <ToolCard key={tool.id} tool={tool} featured />
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border">
+        <div className="mx-auto max-w-350 px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
+          <div className="relative overflow-hidden rounded-lg border border-border">
+            <img
+              src={BAND_IMAGE}
+              alt="Abstract render of glowing filaments bundled inside a dark glass block."
+              fittingType="fill"
+              className="absolute inset-0 h-full w-full"
+            />
+
+            <div className="absolute inset-0 bg-linear-to-r from-background via-background/90 to-background/30" />
+            <div className="relative grid gap-8 p-8 sm:p-12 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:p-14">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-primary">
+                  Start anywhere
+                </p>
+
+                <h2 className="mt-4 max-w-xl font-heading text-[clamp(1.7rem,3.4vw,2.6rem)] font-medium leading-[1.08] tracking-[-0.02em] text-foreground">
+                  Pick a discipline, read the guide, open the tool.
+                </h2>
+
+                <p className="mt-5 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  Each guide explains what the discipline is for, the order to
+                  learn it in, and the handful of tools worth installing first —
+                  so you are never staring at a list of names with no idea where
+                  to begin.
+                </p>
+              </div>
+              
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <Link
+                  to="/categories/$categoryId"
+                  params={{ categoryId: "reconnaissance" }}
+                  className="group inline-flex items-center gap-2 bg-primary px-5 py-3.5 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-foreground transition-opacity hover:opacity-90">
+                  Start with recon
+                  <ArrowRight
+                    className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </Link>
+
+                <Link
+                  to="/tools"
+                  className="group inline-flex items-center gap-2 border border-foreground/30 px-5 py-3.5 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground transition-colors hover:border-foreground hover:bg-foreground/10">
+                  Open catalogue
+                  <ArrowUpRight
+                    className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
