@@ -1,4 +1,4 @@
-# [SecForge] (https://sec-forge.vercel.app)
+# [SecForge](https://sec-forge.vercel.app)
 
 **Forge your security knowledge.**
 
