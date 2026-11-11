@@ -1,4 +1,6 @@
-# [SecForge](https://sec-forge.vercel.app)
+# SecForge
+
+Check out the live website [here](https://sec-forge.vercel.app)
 
 **Forge your security knowledge.**
 
